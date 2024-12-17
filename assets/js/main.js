@@ -1,38 +1,46 @@
 /*=============== EMAIL JS ===============*/
-const contactForm = document.getElementById('checkoutForm'),
-      contactMessage = document.getElementById('contact-message')
+const contactForm = document.getElementById('checkoutForm');
+const contactMessage = document.getElementById('contact-message');
 
-const sendEmail = (e) =>{
-   e.preventDefault()
+contactForm.addEventListener('submit', async (e) => {
+   e.preventDefault(); // Prevent default form submission
 
-   /*   
-      The code for sending emails is just an example.
+   // FormData to get all form input values
+   const formData = new FormData(contactForm);
 
-      Create your account at https://www.emailjs.com/ and 
-      follow the instructions in the images for sending emails 
-      that are in the project folder.
-   */
+   // Send the form data using fetch to Web3Forms API
+   try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+         method: 'POST',
+         body: formData
+      });
 
-   // serviceID - templateID - #form - publicKey
-   emailjs.sendForm('service_8ii265v','template_85g6ftk','#contact-form','VQaq6RG_bXgUd7BNm')
+      const result = await response.json();
 
-   .then(() =>{
-      // Show sent message
-      contactMessage.textContent = 'Message sent successfully ✅'
+      if (result.success) {
+         // Show success message
+         contactMessage.textContent = 'Message sent successfully ✅';
+         contactMessage.style.color = 'green';
 
-      // Remove message after five seconds
-      setTimeout(() =>{
-         contactMessage.textContent = ''
-      }, 5000)
+         // Clear form fields
+         contactForm.reset();
 
-      // Clear input fields
-      contactForm.reset()
-   }, () =>{
-      // Show error message
-      contactMessage.textContent = 'Message not sent (service error) ❌'
-   })
-}
-contactForm.addEventListener('submit', sendEmail)
+         // Remove message after 5 seconds
+         setTimeout(() => {
+            contactMessage.textContent = '';
+         }, 5000);
+      } else {
+         // Show error message
+         contactMessage.textContent = 'Message not sent (error) ❌';
+         contactMessage.style.color = 'red';
+      }
+   } catch (error) {
+      console.error('Error:', error);
+      contactMessage.textContent = 'Message not sent (server error) ❌';
+      contactMessage.style.color = 'red';
+   }
+});
+
 
 /*=============== SHOW SCROLL UP ===============*/ 
 const scrollUp = () =>{
@@ -78,3 +86,4 @@ sr.reveal(`.info`, {origin: 'left', delay: 800})
 sr.reveal(`.skills`, {origin: 'left', delay: 1000})
 sr.reveal(`.about`, {origin: 'right', delay: 1200})
 sr.reveal(`.projects__card, .services__card, .experience__card`, {interval: 100})
+

@@ -15,6 +15,200 @@
    <link rel="stylesheet" href="assets/css/styles.css">
 
    <title>Dhanush WebDev</title>
+
+   <style>
+      /* Project slide show..... */
+
+      .slide-container {
+         position: relative;
+         width: 800px;
+         margin: auto;
+         height: 350px;
+         border: 3px solid #ede6d6;
+         box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      @media screen and (max-width: 768px) {
+         .slide-container {
+            width: auto;
+            margin: auto;
+            height: 250px;
+         }
+      }
+
+      .slide-container .slides {
+         width: 100%;
+         height: calc(100% - 40px);
+         position: relative;
+         overflow: hidden;
+      }
+
+      .slide-container .slides img {
+         width: 100%;
+         height: 100%;
+         position: absolute;
+         object-fit: cover;
+      }
+
+      .slide-container .slides img:not(.active) {
+         top: 0;
+         left: -100%;
+      }
+
+      span.next,
+      span.prev {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         padding: 14px;
+         color: #eee;
+         font-size: 24px;
+         font-weight: bold;
+         transition: 0.5s;
+         border-radius: 3px;
+         user-select: none;
+         cursor: pointer;
+         z-index: 1;
+      }
+
+      span.next {
+         right: 20px;
+      }
+
+      span.prev {
+         left: 20px;
+      }
+
+      span.next:hover,
+      span.prev:hover {
+         background-color: #ede6d6;
+         opacity: 0.8;
+         color: #222;
+      }
+
+      .dotsContainer {
+         position: absolute;
+         bottom: 5px;
+         z-index: 3;
+         left: 50%;
+         transform: translateX(-50%);
+      }
+
+      .dotsContainer .dot {
+         width: 15px;
+         height: 15px;
+         margin: 0px 2px;
+         border: 3px solid #bbb;
+         border-radius: 50%;
+         display: inline-block;
+         cursor: pointer;
+         transition: background-color 0.6s ease;
+      }
+
+      .dotsContainer .active {
+         background-color: #555;
+      }
+
+      /* Add transition for smooth fade effect */
+      .slide-container .slides img {
+         opacity: 0;
+         transition: opacity 0.5s ease-in-out;
+         /* Smooth transition */
+      }
+
+      .slide-container .slides img.active {
+         opacity: 1;
+         /* Fully visible when active */
+         left: 0;
+         /* Ensure it stays in place */
+      }
+
+      /* Container styles */
+      .slide-container {
+         position: relative;
+         width: 100%;
+         max-width: 600px;
+         overflow: hidden;
+         border-radius: 20px;
+      }
+
+      /* Slides container */
+      .slides {
+         display: flex;
+         transition: transform 0.5s ease-in-out;
+         width: 300%;
+         /* Adjust based on the number of images */
+      }
+
+      /* Slide images */
+      .slides img {
+         width: 100%;
+         flex-shrink: 0;
+         /* Ensure all images take up equal space */
+      }
+
+      /* Navigation buttons */
+      button {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         background-color: rgba(0, 0, 0, 0.5);
+         color: white;
+         border: none;
+         padding: 10px 15px;
+         cursor: pointer;
+      }
+
+      button.prev {
+         left: 10px;
+      }
+
+      button.next {
+         right: 10px;
+      }
+
+
+
+      @keyframes next1 {
+         from {
+            left: 0%
+         }
+
+         to {
+            left: -100%;
+         }
+      }
+
+      @keyframes next2 {
+         from {
+            left: 100%
+         }
+
+         to {
+            left: 0%;
+         }
+      }
+
+      @keyframes prev1 {
+         from {
+            left: 0%
+         }
+
+         to {
+            left: 100%;
+         }
+      }
+
+      @keyframes prev2 {
+         from {
+            left: -100%
+         }
+
+         to {
+            left: 0%;
+         }
+      }
+   </style>
 </head>
 
 <body>
@@ -151,9 +345,42 @@
          </div>
       </section>
 
+      <!-- slider -->
+      <!-- <div>
+         <h2 class="section__title">RECENT PROJECTS</h2>
+         <div class="slide-container">
+
+            <div class="slides">
+               <img src="assets/img/projects-1.png" class="active">
+               <img src="assets/img/projects-2.png">
+               <img src="assets/img/projects-3.png">
+               <img src="assets/img/projects-4.jpg">
+               <img src="assets/img/projects-5.jpg">
+            </div>
+   
+            <div class="buttons">
+               <span class="next">&#10095;</span>
+               <span class="prev">&#10094;</span>
+            </div>
+   
+            <div class="dotsContainer">
+               <div class="dot active" attr='0' onclick="switchImage(this)"></div>
+               <div class="dot" attr='1' onclick="switchImage(this)"></div>
+               <div class="dot" attr='2' onclick="switchImage(this)"></div>
+               <div class="dot" attr='3' onclick="switchImage(this)"></div>
+               <div class="dot" attr='4' onclick="switchImage(this)"></div>
+            </div>
+   
+         </div>
+      </div>
+
+      <div style="margin: auto; margin-top: 20px;">
+         <a class="button" style="display: flex; justify-content: center; width: 200px; margin: auto;">Buy Now</a>
+      </div> -->
+
       <!--==================== PROJECTS ====================-->
       <section class="projects section" id="projects">
-         <h2 class="section__title">RECENT PROJECTS</h2>
+         <h2 class="section__title">Sites I Offer</h2>
 
          <div class="projects__container container grid">
             <article class="projects__card">
@@ -162,15 +389,15 @@
                </a>
 
                <div class="projects__data">
-                  <h3 class="projects__name">Coffee Website</h3>
+                  <h3 class="projects__name">E-commerce</h3>
                   <p class="projects__description">
-                     Short description of the project that
-                     was carried out in this portfolio.
+
+                     A fully-featured e-commerce platform with complete admin control, enabling seamless product
+                     management, order tracking, user management, and site customization.
                   </p>
 
                   <div class="projects__skills">
                      <img src="assets/img/skills-react.svg" alt="image" class="projects__skill">
-                     <img src="assets/img/skills-sass.svg" alt="image" class="projects__skill">
                      <img src="assets/img/skills-tailwind-css.svg" alt="image" class="projects__skill">
                   </div>
 
@@ -187,15 +414,17 @@
                </a>
 
                <div class="projects__data">
-                  <h3 class="projects__name">Food Product Design</h3>
+                  <h3 class="projects__name">Personal Porfolio</h3>
                   <p class="projects__description">
-                     Short description of the project that
-                     was carried out in this portfolio.
+
+                     A responsive personal portfolio website showcasing projects, skills, and experience, with an
+                     intuitive design to highlight expertise and engage potential clients.
                   </p>
 
                   <div class="projects__skills">
                      <img src="assets/img/skills-figma.svg" alt="image" class="projects__skill">
-                     <img src="assets/img/skills-photoshop.svg" alt="image" class="projects__skill">
+                     <img src="assets/img/skills-html.svg" alt="image" class="projects__skill">
+                     <img src="assets/img/skills-css.svg" alt="image" class="projects__skill">
                   </div>
 
                   <a href="https://dhanushsp.github.io/manjuli-s-portfolio/" target="_blank" class="projects__button">
@@ -211,13 +440,14 @@
                </a>
 
                <div class="projects__data">
-                  <h3 class="projects__name">Restaurant Landing Page</h3>
+                  <h3 class="projects__name">Business site</h3>
                   <p class="projects__description">
-                     Short description of the project that
-                     was carried out in this portfolio.
+                     A professional business website showcasing the company’s model, services, and information, with
+                     clear navigation and easy contact options for potential clients.
                   </p>
 
                   <div class="projects__skills">
+                     <img src="assets/img/skills-figma.svg" alt="image" class="projects__skill">
                      <img src="assets/img/skills-html.svg" alt="image" class="projects__skill">
                      <img src="assets/img/skills-css.svg" alt="image" class="projects__skill">
                      <img src="assets/img/skills-javascript.svg" alt="image" class="projects__skill">
@@ -234,8 +464,6 @@
 
          </div>
       </section>
-
-
 
       <!--==================== SERVICES ====================-->
       <section class="services section" id="services">
@@ -335,24 +563,29 @@
          <h2 class="section__title">CONTACT ME</h2>
 
          <div class="contact__container container grid">
-            <form action="https://api.web3forms.com/submit" method="POST" class="contact__form grid" id="checkoutForm">
+            <form method="POST" class="contact__form grid" id="checkoutForm">
                <!-- Web3Forms Access Key -->
                <input type="hidden" name="access_key" value="b0d6c9a1-3592-495b-8684-61007f23d308">
+               <!-- Subject -->
+               <input type="hidden" name="subject" value="A new mail received from your portfolio">
 
                <div class="contact__group grid">
                   <input type="text" name="user_name" placeholder="Names" required class="contact__input">
                   <input type="email" name="user_email" placeholder="Email" required class="contact__input">
                </div>
 
-               <textarea name="user_message" placeholder="Message" class="contact__input contact__area"></textarea>
+               <textarea name="user_message" placeholder="Message" required
+                  class="contact__input contact__area"></textarea>
 
                <button type="submit" class="button contact__button">Send Message</button>
 
+               <!-- Success/Error Message -->
                <p class="contact__message" id="contact-message"></p>
             </form>
-
          </div>
       </section>
+
+
    </main>
 
    <!--==================== FOOTER ====================-->
@@ -377,15 +610,15 @@
          </div>
 
          <div class="footer__social">
-            <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+            <a href="https://www.facebook.com/profile.php?id=61564814776694" target="_blank" class="footer__social-link">
                <i class="ri-facebook-circle-line"></i>
             </a>
 
-            <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+            <a href="https://www.instagram.com/dhanush_webdev/" target="_blank" class="footer__social-link">
                <i class="ri-instagram-line"></i>
             </a>
 
-            <a href="https://twitter.com/" target="_blank" class="footer__social-link">
+            <a href="https://x.com/Dhanush_WebDev" target="_blank" class="footer__social-link">
                <i class="ri-twitter-x-line"></i>
             </a>
          </div>
@@ -393,6 +626,22 @@
 
       <span class="footer__copy">
          &#169; All Rights Reserved By Dhanush.
+      </span>
+
+      <span class="footer__copy">
+         Refund Policy: Outlines the conditions under which refunds are offered for services, ensuring
+         transparency and client satisfaction. <br>
+
+        Terms of Service: Details the rules, responsibilities, and expectations when clients engage with my web
+         development services. <br>
+
+         Privacy Policy: Explains how client information is collected, used, and protected to maintain
+         confidentiality and trust. <br>
+      </span>
+
+      <span class="footer__copy">
+         Address: Salem, Tamilnadu - India
+         Ph: +919345788084
       </span>
    </footer>
 
@@ -409,6 +658,39 @@
 
    <!--=============== MAIN JS ===============-->
    <script src="assets/js/main.js"></script>
+
+   <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slides img");
+      const dots = document.querySelectorAll(".dot");
+
+      function showSlide(index) {
+         slides.forEach((slide, i) => {
+            slide.classList.remove("active");
+            dots[i].classList.remove("active");
+         });
+
+         slides[index].classList.add("active");
+         dots[index].classList.add("active");
+      }
+
+      function nextSlide() {
+         currentSlide = (currentSlide + 1) % slides.length;
+         showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+         showSlide(currentSlide);
+      }
+
+      document.querySelector(".next").addEventListener("click", nextSlide);
+      document.querySelector(".prev").addEventListener("click", prevSlide);
+
+      // Auto-slide (optional)
+      setInterval(nextSlide, 3000); // Change slide every 3 seconds
+   </script>
+
 </body>
 
 </html>
