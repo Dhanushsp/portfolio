@@ -152,7 +152,7 @@ img {
   left: 0;
   right: 0;
   background-color: hsla(0, 0%, 98%, .1);
-  width: 88%;
+  width: 70%;
   margin-inline: auto;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -587,6 +587,8 @@ img {
 .contact__button {
   margin-top: 1.5rem;
   cursor: pointer;
+  justify-self: center;
+  margin-top: 150px;
 }
 
 .contact__message {
@@ -717,6 +719,11 @@ img {
   .info__img {
     width: 200px;
   }
+
+  .contact__button{
+    justify-self: center;
+    margin-top: 150px;
+  }
 }
 
 /* For medium devices */
@@ -779,6 +786,11 @@ img {
   .experience__card {
     grid-template-columns: 320px 380px;
     align-items: center;
+  }
+
+  .contact__button{
+    justify-self: center;
+    margin-top: 150px;
   }
 
   .footer__container,
